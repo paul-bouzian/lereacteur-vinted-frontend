@@ -1,4 +1,5 @@
 import hero from "../../assets/img/hero.jpeg";
+import tear from "../../assets/img/tear.svg";
 import Buttons from "../Buttons";
 
 function Hero() {
@@ -14,6 +15,9 @@ function Hero() {
             <Buttons filled={true} text={"Vends maintenant"} padding={"8"} />
           </div>
         </div>
+      </div>
+      <div className="absolute bottom-0 right-0 w-1/2">
+        <img src={tear} alt="" />
       </div>
     </div>
   );

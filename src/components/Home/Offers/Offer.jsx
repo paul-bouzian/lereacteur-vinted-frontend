@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Offer({ offer }) {
   const marque = offer.product_details.find(
     (detail) => Object.keys(detail)[0] === "MARQUE",
@@ -8,7 +10,10 @@ function Offer({ offer }) {
   );
 
   return (
-    <div className="flex flex-col gap-2">
+    <Link
+      to={`/offer/${offer._id}`}
+      className="flex flex-col gap-2 transition-transform hover:scale-105 hover:cursor-pointer"
+    >
       {/* user infos */}
       <div className="flex items-center gap-2">
         <img
@@ -34,7 +39,7 @@ function Offer({ offer }) {
         <p>{taille ? taille.TAILLE : ""}</p>
         <p>{marque ? marque.MARQUE : ""}</p>
       </div>
-    </div>
+    </Link>
   );
 }
 

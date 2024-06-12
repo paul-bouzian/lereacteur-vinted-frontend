@@ -11,11 +11,10 @@ function Home() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://lereacteur-vinted-api.herokuapp.com/v2/offers",
+        `${import.meta.env.VITE_API_URL}/offers`,
       );
       setOffers(response.data.offers);
       setLoading(false);
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
