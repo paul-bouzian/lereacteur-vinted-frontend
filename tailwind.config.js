@@ -6,6 +6,9 @@ export default {
       fontFamily: {
         vinted: ["V-Inter", "sans-serif"],
       },
+      screens: {
+        tablet: "870px",
+      },
     },
   },
   plugins: [],
