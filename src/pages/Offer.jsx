@@ -17,7 +17,6 @@ function Offer() {
         );
         setOffer(response.data);
         setLoading(false);
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       }
