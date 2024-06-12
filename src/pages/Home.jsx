@@ -7,28 +7,39 @@ import Loading from "../components/Loading";
 function Home() {
   const [loading, setLoading] = useState(true);
   const [offers, setOffers] = useState([]);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/offers`,
-      );
-      setOffers(response.data.offers);
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const [page, setPage] = useState(1);
+  const limit = 8;
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/offers?page=${page}&limit=${limit}`,
+        );
+        setOffers(response.data);
+        setLoading(false);
+        console.log("kiki");
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    setLoading(true);
     fetchData();
-  }, []);
+  }, [page]);
 
   return (
     <main>
       <Hero />
       {loading && <Loading />}
-      {!loading && <Offers offers={offers} />}
+      {!loading && (
+        <Offers
+          offers={offers.offers}
+          count={offers.count}
+          limit={limit}
+          page={page}
+          setPage={setPage}
+        />
+      )}
     </main>
   );
 }
