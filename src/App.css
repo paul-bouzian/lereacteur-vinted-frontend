@@ -2,12 +2,6 @@ body  {
   font-family: "V-Inter", sans-serif;
 }
 
-html,
-body,
-#root {
-  height: 100%;
-}
-
-#root {
+#router {
   position: relative;
 }

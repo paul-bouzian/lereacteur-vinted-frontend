@@ -14,7 +14,7 @@ function Offer() {
     const fetchOffer = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/offers/${id}`,
+          `${import.meta.env.VITE_API_URL}v2/offers/${id}`,
         );
         setOffer(response.data);
         setLoading(false);

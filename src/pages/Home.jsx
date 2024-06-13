@@ -14,11 +14,10 @@ function Home() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/offers?page=${page}&limit=${limit}`,
+          `${import.meta.env.VITE_API_URL}v2/offers?page=${page}&limit=${limit}`,
         );
         setOffers(response.data);
         setLoading(false);
-        console.log("kiki");
       } catch (error) {
         console.error(error);
       }
@@ -28,7 +27,7 @@ function Home() {
   }, [page]);
 
   return (
-    <main>
+    <main className="pb-2">
       <Hero />
       {loading && <Loading />}
       {!loading && (

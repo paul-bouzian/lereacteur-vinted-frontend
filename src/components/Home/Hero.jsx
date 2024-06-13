@@ -1,6 +1,6 @@
 import hero from "../../assets/img/hero.jpeg";
 import tear from "../../assets/img/tear.svg";
-import Buttons from "../Buttons";
+import ButtonClassic from "../Buttons/ButtonClassic";
 
 function Hero() {
   return (
@@ -12,7 +12,11 @@ function Hero() {
             <span className="flex-1 text-4xl font-light">
               Prêts à faire du tri dans vos placards ?
             </span>
-            <Buttons filled={true} text={"Vends maintenant"} padding={"8"} />
+            <ButtonClassic
+              filled={true}
+              text={"Vends maintenant"}
+              padding={"8"}
+            />
           </div>
         </div>
       </div>

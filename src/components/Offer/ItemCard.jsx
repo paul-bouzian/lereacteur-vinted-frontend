@@ -1,4 +1,4 @@
-import Buttons from "../Buttons";
+import ButtonClassic from "../Buttons/ButtonClassic";
 
 function ItemCard({ offer }) {
   return (
@@ -47,7 +47,7 @@ function ItemCard({ offer }) {
         </div>
       </div>
       {/* button */}
-      <Buttons filled={true} text={"Acheter"} />
+      <ButtonClassic filled={true} text={"Acheter"} />
     </div>
   );
 }
