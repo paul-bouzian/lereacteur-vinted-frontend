@@ -6,7 +6,7 @@ function Modal({ modal, setModal, setConnected }) {
     <div className="absolute left-0 top-0 flex h-[110vh] w-screen items-center justify-center bg-black bg-opacity-50">
       <div className="relative w-2/5 min-w-96 rounded-lg bg-white p-6 opacity-100">
         {
-          /* <SignUp /> */ modal === "signup" && (
+          /* <Signup /> */ modal === "signup" && (
             <Signup setModal={setModal} setConnected={setConnected} />
           )
         }
