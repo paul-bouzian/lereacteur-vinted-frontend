@@ -1,13 +1,6 @@
 import Buttons from "../Buttons";
 
 function ItemCard({ offer }) {
-  const getDetailValue = (key) => {
-    const detail = offer.product_details?.find(
-      (detail) => Object.keys(detail)[0] === key,
-    );
-    return detail ? detail[key] : "";
-  };
-
   return (
     <div className="flex h-[600px] w-full flex-col justify-between bg-white p-10 lg:w-[460px]">
       {/* price and details */}
@@ -16,16 +9,24 @@ function ItemCard({ offer }) {
           <h1 className="text-2xl">{offer.product_price}&nbsp;€</h1>
           <div className="flex justify-between gap-2 text-sm">
             <div className="text-gray-400">
-              <p>MARQUE</p>
-              <p>ÉTAT</p>
-              <p>COULEUR</p>
-              <p>EMPLACEMENT</p>
+              {offer.product_details.map((detail, index) => {
+                const key = Object.keys(detail)[0];
+                return (
+                  <p key={index} className="capitalize">
+                    {key}
+                  </p>
+                );
+              })}
             </div>
             <div className="font-semibold text-gray-500">
-              <p>{getDetailValue("MARQUE")}</p>
-              <p>{getDetailValue("ÉTAT")}</p>
-              <p>{getDetailValue("COULEUR")}</p>
-              <p>{getDetailValue("EMPLACEMENT")}</p>
+              {offer.product_details.map((detail, index) => {
+                const key = Object.keys(detail)[0];
+                return (
+                  <p key={index} className="capitalize">
+                    {detail[key]}
+                  </p>
+                );
+              })}
             </div>
           </div>
         </div>
