@@ -1,5 +1,5 @@
 import Login from "./Login";
-import Signup from "./Signup";
+import Signup from "./SignUp";
 
 function Modal({ modal, setModal, setConnected }) {
   return (
