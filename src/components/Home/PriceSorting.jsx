@@ -55,7 +55,7 @@ function PriceSorting({ sort, setSort }) {
           setSort(!value);
         }}
         thumbIcon={
-          sort ? (
+          !sort ? (
             <i className="fas fa-arrow-up"></i>
           ) : (
             <i className="fas fa-arrow-down"></i>

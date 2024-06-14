@@ -20,7 +20,6 @@ function Home({ search }) {
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}v2/offers?page=${page}&limit=${limit}&priceMin=${prices[0]}&priceMax=${prices[1]}&sort=${sort ? "price-desc" : "price-asc"}&title=${search}`,
         );
-        console.log(response.data);
         setOffers(response.data);
         setLoading(false);
       } catch (error) {
@@ -39,9 +38,12 @@ function Home({ search }) {
         <PriceSorting sort={sort} setSort={setSort} />
         <PriceFilter prices={prices} setPrices={setPrices} />
       </div>
-      {loading ? (
-        <Loading />
-      ) : (
+      {loading && <Loading />}
+
+      {offers.count === 0 && !loading && (
+        <div className="mt-14 text-center text-xl">Aucun article trouvé</div>
+      )}
+      {offers.count !== 0 && !loading && (
         <Offers
           offers={offers.offers}
           count={offers.count}
