@@ -6,7 +6,7 @@ import PriceFilter from "../components/Home/PriceFilter";
 import PriceSorting from "../components/Home/PriceSorting";
 import Loading from "../components/Loading";
 
-function Home() {
+function Home({ search }) {
   const [loading, setLoading] = useState(true);
   const [offers, setOffers] = useState([]);
   const [page, setPage] = useState(1);
@@ -18,8 +18,9 @@ function Home() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}v2/offers?page=${page}&limit=${limit}&priceMin=${prices[0]}&priceMax=${prices[1]}&sort=${sort ? "price-asc" : "price-desc"}`,
+          `${import.meta.env.VITE_API_URL}v2/offers?page=${page}&limit=${limit}&priceMin=${prices[0]}&priceMax=${prices[1]}&sort=${sort ? "price-desc" : "price-asc"}&title=${search}`,
         );
+        console.log(response.data);
         setOffers(response.data);
         setLoading(false);
       } catch (error) {
@@ -28,7 +29,7 @@ function Home() {
     };
     setLoading(true);
     fetchData();
-  }, [page, prices, sort]);
+  }, [page, prices, sort, search]);
 
   return (
     <main className="pb-2">

@@ -5,7 +5,7 @@ import ButtonClassic from "./Buttons/ButtonClassic";
 import ButtonRed from "./Buttons/ButtonRed";
 import Inputs from "./Inputs";
 
-function Header({ setModal, connected, setConnected }) {
+function Header({ setModal, connected, setConnected, search, setSearch }) {
   const navigate = useNavigate();
 
   const disconnect = () => {
@@ -22,7 +22,11 @@ function Header({ setModal, connected, setConnected }) {
         </Link>
         <div className="flex flex-1 items-center gap-2 rounded bg-gray-100 p-2 max-tablet:hidden">
           <i className="fa-solid fa-magnifying-glass text-gray-400"></i>
-          <Inputs placeholder="Recherche des articles..." />
+          <Inputs
+            placeholder="Recherche des articles..."
+            value={search}
+            setValue={setSearch}
+          />
         </div>
 
         {connected ? (

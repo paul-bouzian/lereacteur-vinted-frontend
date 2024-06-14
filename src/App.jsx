@@ -11,6 +11,7 @@ function App() {
   const token = Cookies.get("token");
   const [modal, setModal] = useState(null);
   const [connected, setConnected] = useState(token ? true : false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     if (modal !== null) {
@@ -30,9 +31,11 @@ function App() {
           setModal={setModal}
           connected={connected}
           setConnected={setConnected}
+          search={search}
+          setSearch={setSearch}
         />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home search={search} />} />
           <Route path="/offer/:id" element={<Offer />} />
         </Routes>
         {modal && (
