@@ -6,15 +6,16 @@ import Header from "./components/Header";
 import Modal from "./components/Modal/Modal";
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
+import Publish from "./pages/Publish";
 
 function App() {
   const token = Cookies.get("token");
-  const [modal, setModal] = useState(null);
+  const [modal, setModal] = useState({ show: false, navigate: null });
   const [connected, setConnected] = useState(token ? true : false);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    if (modal !== null) {
+    if (modal.show === true) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -35,10 +36,16 @@ function App() {
           setSearch={setSearch}
         />
         <Routes>
-          <Route path="/" element={<Home search={search} />} />
+          <Route
+            path="/"
+            element={
+              <Home search={search} connected={connected} setModal={setModal} />
+            }
+          />
+          <Route path="/publish" element={<Publish />} />
           <Route path="/offer/:id" element={<Offer />} />
         </Routes>
-        {modal && (
+        {modal.show && (
           <Modal
             modal={modal}
             setModal={setModal}

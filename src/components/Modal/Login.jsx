@@ -1,16 +1,21 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Login({ setModal, setConnected }) {
+function Login({ modal, setModal, setConnected }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayWrongCredentials, setDisplayWrongCredentials] = useState(false);
+  const navigate = useNavigate();
 
   const loginUser = (token) => {
-    setModal(null);
     Cookies.set("token", token);
     setConnected(true);
+    if (modal.navigate) {
+      navigate(modal.navigate);
+    }
+    setModal({ show: false, navigate: null });
   };
 
   const loginRequest = async () => {

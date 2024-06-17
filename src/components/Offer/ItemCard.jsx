@@ -38,7 +38,11 @@ function ItemCard({ offer }) {
         <div className="flex items-center gap-2 font-light">
           <div className="w-12">
             <img
-              src={offer.owner.account.avatar.secure_url}
+              src={
+                offer.owner.account.avatar
+                  ? offer.owner.account.avatar.secure_url
+                  : null
+              }
               alt=""
               className="rounded-full"
             />

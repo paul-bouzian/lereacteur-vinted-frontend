@@ -4,7 +4,6 @@ import "react-multi-carousel/lib/styles.css";
 function PicturesCarousel({ pictures }) {
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 1,
     },
@@ -41,11 +40,11 @@ function PicturesCarousel({ pictures }) {
     >
       {pictures.map((picture, index) => {
         return (
-          <div key={index}>
+          <div key={index} className="h-[630px] max-sm:h-[500px]">
             <img
               src={picture ? picture.secure_url : ""}
               alt=""
-              className="h-full w-full"
+              className="h-full w-full object-cover"
             />
           </div>
         );

@@ -1,8 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import hero from "../../assets/img/hero.jpeg";
 import tear from "../../assets/img/tear.svg";
 import ButtonClassic from "../Buttons/ButtonClassic";
 
-function Hero() {
+function Hero({ connected, setModal }) {
+  const navigate = useNavigate();
+
+  const navigateToPublish = () => {
+    if (!connected) {
+      setModal({ show: "login", navigate: "/publish" });
+      return;
+    }
+    navigate("/publish");
+  };
+
   return (
     <div className="relative h-[460px] w-full">
       <img src={hero} alt="hero" className="h-full w-full object-cover" />
@@ -12,11 +23,13 @@ function Hero() {
             <span className="flex-1 text-4xl font-light">
               Prêts à faire du tri dans vos placards ?
             </span>
-            <ButtonClassic
-              filled={true}
-              text={"Vends maintenant"}
-              padding={"8"}
-            />
+            <div className="w-full" onClick={navigateToPublish}>
+              <ButtonClassic
+                filled={true}
+                text={"Vends maintenant"}
+                padding={"8"}
+              />
+            </div>
           </div>
         </div>
       </div>

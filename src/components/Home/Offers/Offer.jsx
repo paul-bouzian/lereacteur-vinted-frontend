@@ -17,7 +17,11 @@ function Offer({ offer }) {
       {/* user infos */}
       <div className="flex items-center gap-2">
         <img
-          src={offer.owner.account.avatar.url}
+          src={
+            offer.owner.account.avatar
+              ? offer.owner.account.avatar.secure_url
+              : null
+          }
           alt={offer.owner.account.username}
           className="h-[20px] w-[20px] rounded-full"
         />
@@ -36,8 +40,8 @@ function Offer({ offer }) {
       {/* price infos */}
       <div className="flex flex-col px-2 text-xs text-gray-400">
         <p className="text-sm text-black">{offer.product_price}&nbsp;€</p>
-        <p>{taille ? taille.TAILLE : ""}</p>
-        <p>{marque ? marque.MARQUE : ""}</p>
+        <p className="capitalize">{taille ? taille.TAILLE : ""}</p>
+        <p className="capitalize">{marque ? marque.MARQUE : ""}</p>
       </div>
     </Link>
   );

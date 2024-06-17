@@ -32,7 +32,7 @@ function Offer() {
 
   return (
     <main className="bg-gray-100 max-lg:pb-12 lg:h-full">
-      <div className="m-auto flex max-w-6xl flex-col items-center justify-normal gap-8 px-4 pt-10 lg:flex-row lg:justify-between">
+      <div className="m-auto flex max-w-6xl flex-col items-center justify-normal gap-20 px-4 pt-10 lg:flex-row lg:justify-between">
         {
           // PicturesCarousel
           offer.product_pictures?.length > 1 ? (

@@ -6,7 +6,7 @@ import PriceFilter from "../components/Home/PriceFilter";
 import PriceSorting from "../components/Home/PriceSorting";
 import Loading from "../components/Loading";
 
-function Home({ search }) {
+function Home({ search, connected, setModal, setInitialUrl }) {
   const [loading, setLoading] = useState(true);
   const [offers, setOffers] = useState([]);
   const [page, setPage] = useState(1);
@@ -32,7 +32,11 @@ function Home({ search }) {
 
   return (
     <main className="pb-2">
-      <Hero />
+      <Hero
+        connected={connected}
+        setModal={setModal}
+        setInitialUrl={setInitialUrl}
+      />
 
       <div className="m-auto mt-4 flex max-w-7xl gap-8 px-4">
         <PriceSorting sort={sort} setSort={setSort} />
