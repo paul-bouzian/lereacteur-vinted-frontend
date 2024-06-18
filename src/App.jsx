@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Modal from "./components/Modal/Modal";
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
+import Payment from "./pages/Payment";
 import Publish from "./pages/Publish";
 
 function App() {
@@ -43,7 +44,11 @@ function App() {
             }
           />
           <Route path="/publish" element={<Publish />} />
-          <Route path="/offer/:id" element={<Offer />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route
+            path="/offer/:id"
+            element={<Offer connected={connected} setModal={setModal} />}
+          />
         </Routes>
         {modal.show && (
           <Modal

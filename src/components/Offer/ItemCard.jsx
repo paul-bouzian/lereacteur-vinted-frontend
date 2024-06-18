@@ -1,6 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import ButtonClassic from "../Buttons/ButtonClassic";
 
-function ItemCard({ offer }) {
+function ItemCard({ offer, connected, setModal }) {
+  const navigate = useNavigate();
+
+  const handleBuyClick = () => {
+    if (!connected) {
+      setModal({ show: "login", navigate: null });
+      return;
+    }
+    navigate("/payment", {
+      state: { title: offer.product_name, price: offer.product_price },
+    });
+  };
+
   return (
     <div className="flex h-[600px] w-full flex-col justify-between bg-white p-10 lg:w-[460px]">
       {/* price and details */}
@@ -51,7 +64,9 @@ function ItemCard({ offer }) {
         </div>
       </div>
       {/* button */}
-      <ButtonClassic filled={true} text={"Acheter"} />
+      <div onClick={handleBuyClick}>
+        <ButtonClassic filled={true} text={"Acheter"} />
+      </div>
     </div>
   );
 }

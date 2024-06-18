@@ -5,7 +5,7 @@ import Loading from "../components/Loading";
 import ItemCard from "../components/Offer/ItemCard";
 import PicturesCarousel from "../components/Offer/PicturesCarousel";
 
-function Offer() {
+function Offer({ connected, setModal }) {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [offer, setOffer] = useState({});
@@ -50,7 +50,7 @@ function Offer() {
           )
         }
 
-        <ItemCard offer={offer} />
+        <ItemCard offer={offer} connected={connected} setModal={setModal} />
       </div>
     </main>
   );
