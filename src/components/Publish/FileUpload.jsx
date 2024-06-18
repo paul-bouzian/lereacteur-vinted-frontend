@@ -2,12 +2,18 @@ import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 
 function FileUpload({ file, setFile }) {
-  const message = file.name ? file.name : "Ajoute une photo";
+  const message =
+    file.length !== 0
+      ? file.map((f) => f.name).join(" | ")
+      : "Ajoute une photo";
 
-  const onDrop = useCallback((acceptedFiles) => {
-    console.log(acceptedFiles);
-    setFile(acceptedFiles[0]);
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles) => {
+      setFile(acceptedFiles);
+    },
+    [setFile],
+  );
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
@@ -17,7 +23,7 @@ function FileUpload({ file, setFile }) {
         type="file"
         id="fileInput"
         className="hidden"
-        onChange={(e) => setFile(e.target.files[0])}
+        onChange={(e) => setFile([...e.target.files])}
       />
       <button
         type="button"

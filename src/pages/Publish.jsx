@@ -10,7 +10,7 @@ function Publish() {
 
   const [errorMessage, setErrorMessage] = useState("");
 
-  const [file, setFile] = useState({});
+  const [file, setFile] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [brand, setBrand] = useState("");
@@ -39,7 +39,9 @@ function Publish() {
     formData.append("size", size.toUpperCase());
     formData.append("color", color);
     formData.append("newsLetter", newsLetter);
-    formData.append("picture", file);
+    file.forEach((file) => {
+      formData.append("picture", file);
+    });
 
     try {
       const response = await axios.post(
