@@ -104,7 +104,7 @@ function Publish() {
               label={"Marque"}
               value={brand}
               setValue={setBrand}
-              placeholder={"ex: ex: Zara"}
+              placeholder={"ex: Zara"}
               border={true}
             />
             <PublishInput
