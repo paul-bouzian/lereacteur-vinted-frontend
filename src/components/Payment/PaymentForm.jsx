@@ -31,6 +31,7 @@ const PaymentForm = ({ title, price }) => {
 
       if (submitError) {
         setErrorMessage(submitError.message);
+        setIsPaying(false);
         return;
       }
 
@@ -53,7 +54,10 @@ const PaymentForm = ({ title, price }) => {
         redirect: "if_required",
       });
 
-      if (error) setErrorMessage(error.message);
+      if (error) {
+        setIsPaying(false);
+        setErrorMessage(error.message);
+      }
 
       if (paymentIntent.status === "succeeded") {
         setSuccess(true);
