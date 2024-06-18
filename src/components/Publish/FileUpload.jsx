@@ -1,9 +1,19 @@
+import React, { useCallback } from "react";
+import { useDropzone } from "react-dropzone";
+
 function FileUpload({ file, setFile }) {
   const message = file.name ? file.name : "Ajoute une photo";
 
+  const onDrop = useCallback((acceptedFiles) => {
+    console.log(acceptedFiles);
+    setFile(acceptedFiles[0]);
+  }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
   return (
-    <div className="relative w-full">
+    <div {...getRootProps()} className="relative w-full">
       <input
+        {...getInputProps()}
         type="file"
         id="fileInput"
         className="hidden"
@@ -28,7 +38,7 @@ function FileUpload({ file, setFile }) {
             d="M12 4v16m8-8H4"
           />
         </svg>
-        {message}
+        {isDragActive ? "Déposez le fichier ici" : message}
       </button>
     </div>
   );
