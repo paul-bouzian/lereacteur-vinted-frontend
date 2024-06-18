@@ -85,12 +85,18 @@ function Publish() {
               placeholder={"ex: Chemise Sézane verte"}
               border={true}
             />
-            <PublishInput
-              label={"Décris ton article"}
-              value={description}
-              setValue={setDescription}
-              placeholder={"ex: porté quelquefois, taille correctement"}
-            />
+
+            <div className={`flex w-full justify-center py-6`}>
+              <label className="flex-1">Décris ton article</label>
+              <textarea
+                value={description}
+                onChange={(e) => {
+                  setDescription(e.target.value);
+                }}
+                placeholder={"ex: porté quelquefois, taille correctement"}
+                className="flex-1 rounded border-b border-slate-300 p-1 outline-none"
+              />
+            </div>
           </div>
 
           <div className="formContainer">
