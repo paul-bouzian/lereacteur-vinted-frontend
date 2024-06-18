@@ -2,12 +2,15 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import FileUpload from "../Publish/FileUpload";
 
 function Signup({ modal, setModal, setConnected }) {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [displayWrongCredentials, setDisplayWrongCredentials] = useState(false);
+  const [avatar, setAvatar] = useState([]);
 
   const registerUser = (token) => {
     if (token) Cookies.set("token", token);
@@ -19,20 +22,22 @@ function Signup({ modal, setModal, setConnected }) {
   };
 
   const connectRequest = async () => {
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("username", username);
+    formData.append("password", password);
+    formData.append("newsletter", false);
+    formData.append("avatar", avatar.length !== 0 ? avatar[0] : null);
+
     try {
       console.log(email, password);
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}user/signup`,
-        {
-          email: email,
-          username: username,
-          password: password,
-          newsletter: false,
-        },
+        formData,
       );
-      console.log(response.data);
       registerUser(response.data.token);
     } catch (error) {
+      setDisplayWrongCredentials(true);
       console.error(error);
     }
   };
@@ -42,7 +47,7 @@ function Signup({ modal, setModal, setConnected }) {
       <h2 className="text-3xl">S'inscrire</h2>
       <form
         action=""
-        className="flex w-full flex-col items-center gap-10 px-10 lg:w-2/3"
+        className="flex w-full flex-col items-center gap-10 px-10 lg:w-4/5"
         onSubmit={(e) => {
           e.preventDefault();
           connectRequest();
@@ -75,6 +80,10 @@ function Signup({ modal, setModal, setConnected }) {
           }}
           className="w-full rounded border-b border-red-100 p-4 outline-none"
         />
+        <FileUpload file={avatar} setFile={setAvatar} isSeveral={false} />
+        {displayWrongCredentials && (
+          <p className="text-red-500">Les champs ont été mal renseignés</p>
+        )}
         <input
           type="submit"
           className={`text-md mt-6 w-full cursor-pointer truncate rounded border border-teal-700 bg-teal-700 p-2 text-white hover:bg-white hover:text-teal-700`}

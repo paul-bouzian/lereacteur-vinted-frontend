@@ -41,7 +41,7 @@ function Login({ modal, setModal, setConnected }) {
       <h2 className="text-2xl">Se connecter</h2>
       <form
         action=""
-        className="flex w-full flex-col items-center gap-10 px-10 lg:w-2/3"
+        className="flex w-full flex-col items-center gap-10 px-10 lg:w-4/5"
         onSubmit={(e) => {
           e.preventDefault();
           loginRequest();

@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 
-function FileUpload({ file, setFile }) {
+function FileUpload({ file, setFile, isSeveral }) {
   const message =
     file.length !== 0
       ? file.map((f) => f.name).join(" | ")
@@ -9,7 +9,7 @@ function FileUpload({ file, setFile }) {
 
   const onDrop = useCallback(
     (acceptedFiles) => {
-      setFile(acceptedFiles);
+      setFile(isSeveral ? acceptedFiles : acceptedFiles[0]);
     },
     [setFile],
   );
@@ -23,7 +23,11 @@ function FileUpload({ file, setFile }) {
         type="file"
         id="fileInput"
         className="hidden"
-        onChange={(e) => setFile([...e.target.files])}
+        onChange={(e) =>
+          setFile(
+            isSeveral ? [...e.target.files] : [...file, e.target.files[0]],
+          )
+        }
       />
       <button
         type="button"

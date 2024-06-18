@@ -78,7 +78,7 @@ function Publish() {
             handleSubmit(event);
           }}
         >
-          <FileUpload file={file} setFile={setFile} />
+          <FileUpload file={file} setFile={setFile} isSeveral={true} />
           <div className="formContainer">
             <PublishInput
               label={"Titre"}
