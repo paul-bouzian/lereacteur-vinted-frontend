@@ -28,7 +28,7 @@ function FileUpload({ file, setFile }) {
       <button
         type="button"
         onClick={() => document.getElementById("fileInput").click()}
-        className="flex h-48 w-full cursor-pointer items-center justify-center rounded border-2 border-dashed border-teal-600 bg-white text-teal-600 hover:bg-gray-100"
+        className={`flex h-48 w-full cursor-pointer items-center justify-center rounded border-2 border-dashed border-teal-600 text-teal-600 transition-all duration-300 hover:bg-gray-100 ${isDragActive ? "bg-teal-700 text-white" : "bg-white"}`}
       >
         <svg
           className="mr-2 h-6 w-6"
